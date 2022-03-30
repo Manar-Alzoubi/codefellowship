@@ -1,3 +1,4 @@
+
 # codefellowship
 
 *ApplationUser has the following properties : 
@@ -29,4 +30,3 @@
   * if user signed in it allows user enter the app (all pages of app )
   * your username will be shown at the top of page 
 
-   
