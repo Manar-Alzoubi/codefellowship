@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <h3 th:text = "${username}"> </h3>
+</head>
+<body>
+
+<header >
+<!--    <ul>-->
+
+<!--        <li><a href="/signup">Sign Up</a></li>-->
+<!--        <li><a href="/login">Login</a></li>-->
+<!--    </ul>-->
+<!--    <h2>login<a href="/login"> Login</a></h2>-->
+<!--    <h2>Sign up<a href="/signup">Sign up</a></h2>-->
+</header>
+<h1>Hello from Application User Home page </h1><br>
+<h2>Have a nice tower in my Application  </h2><br>
+<h3>I wish you be happy </h3><br>
+
+
+
+<form action="/perform_logout" method="get">
+    <label for="logout"></label>
+    <input type="submit" value="Logout" id="logout">
+</form>
+
+</body>
+</html>
