@@ -27,24 +27,55 @@ input[type=password], select {
   border-radius: 4px;
   box-sizing: border-box;
 }
-
+header{
+background-color: #45a049;
+}
 input[type=submit] {
   background-color: #45a049;
 }
-body{
+
 background-color:#FFC0CB2 ;
-}
+
 h1{
     color : #9370DB;
+    font-size: 30px;
 
 }
 h2{
     color : #DDA0DD;
+    font-size: 30px;
 
 }
 h3{
-    color : #FFFF00;
+    color : #00008B;
+    font-size: 30px;
 }
-h3{
-    color : #FFFF00;
+
+img{
+    width: 100%;
+    max-width: 100px;
+     border-radius: 50%;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  padding: 8px;
+  background-color: #dddddd;
+}
+p{
+    color : #9370DB;
+     font-size: 50px;
+      justify-content: center;
+}
+form{justify-content: center;
 }

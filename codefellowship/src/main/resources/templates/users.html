@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+    <ul>
+        <li><a href="/signup">signup</a></li>
+        <li><a href="/login">login</a></li>
+        <li><a href="/myprofile">profile </a></li>
+        <li><a href="/users">users</a></li>
+    </ul>
+</head>
+<body>
+<P> All users : </P>
+
+    <div class="w3-container">
+        <div class="w3-card" style="width:50%">
+            <ul th:each="user: ${users}">
+            <img src="https://static.vecteezy.com/system/resources/previews/000/439/863/original/vector-users-icon.jpg" alt="Person" style="width:20%">
+            <div class="w3-container">
+                <h3 th:text = "${user.username}"> </h3>
+                <h3 th:text = "${user.dateOfBirth}"> </h3>
+                <h3 th:text = "${user.bio}"> </h3></br></br>
+            </div>
+            </ul>
+        </div>
+    </div>
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+</body>
+</html>
