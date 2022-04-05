@@ -36,6 +36,6 @@
   * allows viewing the data about a single ApplicationUser, include a default profile picture, and their basic information
 
 * (/Post): user should post a post , includes body and time in which post created 
-  * Note : I make the form and collect data but it doesn't save to db 
+  * posts are appears in the profiage of the user who posted them 
 
    
