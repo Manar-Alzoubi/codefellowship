@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>My Profile </title>
     <link rel="stylesheet" href="style.css">
-    <h3 th:text = "${username}"> </h3>
+    <h3 th:text="${user.username}"></h3>
     <ul>
         <li><a href="/signup">signup</a></li>
         <li><a href="/login">login</a></li>
@@ -16,29 +16,30 @@
 <body>
 
 
-<div >
+<div>
     <div class="w3-container">
         <div class="w3-card" style="width:50%">
-        <h4>User Details </h4>
-        <img src="https://static.vecteezy.com/system/resources/previews/000/439/863/original/vector-users-icon.jpg" alt="Person" style="width:10%">
-        <p th:text="${username}"></p>
-        <p th:text="${bio}"></p></br>
+            <h4>User Details </h4>
+            <img src="https://static.vecteezy.com/system/resources/previews/000/439/863/original/vector-users-icon.jpg"
+                 alt="Person" style="width:10%">
+            <p th:text="${user.username}"></p>
+            <p th:text="${user.bio}"></p></br>
 
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         </div>
     </div>
-                <h3> Add new post  </h3></br>
-                <form action="/addPost" method="POST">
-              <textarea name="textContent"  placeholder="Do you want to post ?"></textarea><br>
-                 <button class="btn btn-primary px-4 py-1">Add Post</button>
-                 </form>
-        <ul th:each="post: ${allPosts}">
-                    <img src="https://static.vecteezy.com/system/resources/previews/000/439/863/original/vector-users-icon.jpg" alt="Person" style="width:10%">
-                    <h4  th:text="${username}"></h4>
-                    <h4 th:text="${post.createdAt}"></h4>
-                    <p  th:text="${post.body}"></p>
-        </ul>
+    <h3> Add new post </h3></br>
+    <form action="/addPost" method="POST">
+        <textarea name="body" placeholder="Do you want to post ?"></textarea><br>
+        <button class="btn btn-primary px-4 py-1">Add Post</button>
+    </form>
+            <ul th:each="post: ${user.posts}">
+                        <img src="https://static.vecteezy.com/system/resources/previews/000/439/863/original/vector-users-icon.jpg" alt="Person" style="width:10%">
+                        <h4  th:text="${post.applicationUser.username}"></h4>
+                        <h4 th:text="${post.createdAt}"></h4>
+                        <p  th:text="${post.body}"></p>
+            </ul>
     <br>
 </div>
 </body>
