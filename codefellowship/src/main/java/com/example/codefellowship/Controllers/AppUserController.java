@@ -11,11 +11,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Controller
 public class AppUserController {
@@ -25,6 +25,7 @@ public class AppUserController {
 
     @Autowired
     AppUserRepository appUserRepository;
+    @Autowired
     PostRepository postRepository;
 
     @GetMapping("/")
@@ -66,39 +67,25 @@ public class AppUserController {
         return "users";
     }
     @PostMapping("/addPost")
-    public String addNewUserPost(Model model , @RequestParam String body){
+    public RedirectView addNewUserPost(Model model , @RequestParam String body){
 
     // using the time of computer to know which time the post created
     //https://stackoverflow.com/questions/39527752/how-to-test-date-created-with-localdatetime-now
 
         LocalDateTime time=  LocalDateTime.now();
-//        System.out.println(" 1111");
+
         String user = SecurityContextHolder.getContext().getAuthentication().getName();
-//        System.out.println("222");
         ApplicationUser applicationUser = appUserRepository.findByUsername(user);
-//        System.out.println("333");
-        List<Post> allPosts = applicationUser.getPosts();
-//        System.out.println("444");
-        model.addAttribute("allPosts",applicationUser.getPosts());
-//        System.out.println("555");
         Post post = new Post(body,time);
         post.setApplicationUser(applicationUser);
-        allPosts.add(post);
-        applicationUser.setPosts(allPosts);
         postRepository.save(post);
-        System.out.println("post :"+ post);
-
-        System.out.println(allPosts);
-        return "/myprofile";
+        return new RedirectView ("/myprofile");
     }
 
 
     @GetMapping("/myprofile")
-    String getProfilePage(Model model){
-        UserDetails uDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("username" , uDetails.getUsername());
-        model.addAttribute("bio" , appUserRepository.findByUsername(uDetails.getUsername()).getBio());
-        model.addAttribute("posts" , appUserRepository.findByUsername(uDetails.getUsername()).getPosts());
+    String getProfilePage(Model model , Principal principal){
+        model.addAttribute("user", appUserRepository.findByUsername(principal.getName()));
         return "myprofile";
     }
     @GetMapping("/users/{id}")
