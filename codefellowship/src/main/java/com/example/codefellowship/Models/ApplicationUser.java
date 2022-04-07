@@ -36,6 +36,18 @@ public class ApplicationUser implements UserDetails {
         this.dateOfBirth = dateOfBirth;
         this.bio = bio;
     }
+    @ManyToMany
+    @JoinTable(
+            name = "user_user",
+            joinColumns = {@JoinColumn(name = "from_id")},
+            inverseJoinColumns = {@JoinColumn(name = "to_id")}
+    )
+    public List<ApplicationUser> following;
+
+    @ManyToMany(mappedBy = "following", fetch = FetchType.EAGER)
+    public List<ApplicationUser> followers;
+
+
     @OneToMany(mappedBy = "applicationUser")
     List<Post> posts;
 
@@ -45,6 +57,22 @@ public class ApplicationUser implements UserDetails {
 
     public void setPosts(List<Post> posts) {
         this.posts = posts;
+    }
+
+    public List<ApplicationUser> getFollowing() {
+        return following;
+    }
+
+    public void setFollowing(List<ApplicationUser> following) {
+        this.following = following;
+    }
+
+    public List<ApplicationUser> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(List<ApplicationUser> followers) {
+        this.followers = followers;
     }
 
     @Override

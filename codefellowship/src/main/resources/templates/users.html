@@ -9,6 +9,7 @@
         <li><a href="/login">login</a></li>
         <li><a href="/myprofile">profile </a></li>
         <li><a href="/users">users</a></li>
+        <li><a href="/feed">feed</a></li>
     </ul>
 </head>
 <body>
@@ -22,10 +23,25 @@
                 <h3 th:text = "${user.username}"> </h3>
                 <h3 th:text = "${user.dateOfBirth}"> </h3>
                 <h3 th:text = "${user.bio}"> </h3></br></br>
+
+<!--                <form  action="/follow" method="post">-->
+<!--                    <input  th:value="${user.id}" name="user_id">-->
+<!--                    <button  type="submit">Follow</button>-->
+<!--                </form>-->
+                <h2 x="${user.id}"></h2>
+                <form  method="post" action="/follow/3">
+<!--                    <input type="hidden" th:value="${user.id}" name="user_id">-->
+                    <button  type="submit">Follow</button>
+                </form>
+<!--                //method="post" action="/myprofile"-->
+                        <form  >
+                            <button  type="submit">view page</button>
+                        </form>
             </div>
             </ul>
         </div>
     </div>
+
 
 
 

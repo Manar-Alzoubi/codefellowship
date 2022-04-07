@@ -2,8 +2,8 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <title>Feed</title>
     <link rel="stylesheet" href="style.css">
-
     <ul>
         <li><a href="/signup">signup</a></li>
         <li><a href="/login">login</a></li>
@@ -11,24 +11,15 @@
         <li><a href="/users">users</a></li>
         <li><a href="/feed">feed</a></li>
     </ul>
-
-    <h3 th:text = "${username}"> </h3>
 </head>
 <body>
+<p> your follow is done </p>
+<ul th:each="post: ${posts}">
 
-<header >
-
-</header>
-<h1>Hello from Application User Home page </h1><br>
-<h3>Have a nice tower in my Application  </h3><br>
-<h3>I wish you be happy </h3><br>
-
-
-
-<form action="/perform_logout" method="get">
-    <label for="logout"></label>
-    <input type="submit" value="Logout" id="logout">
-</form>
-
+    <h4  th:text="${post.applicationUser.username}"></h4>
+    <h4 th:text="${post.createdAt}"></h4>
+    <p  th:text="${post.body}"></p>
+</ul>
+<br>
 </body>
 </html>
