@@ -106,50 +106,7 @@ public class AppUserController {
         request.getSession().removeAttribute("error.message");
         return message;
     }
-//    @PostMapping("/follow")
-//    public RedirectView followUser(Principal principal) {
-//        ApplicationUser thisUser = appUserRepository.findByUsername(principal.getName());
-//
-//        thisUser.followUser(appUserRepository.findById(userYouWantToFollow).get());
-//        appUserRepository.save(thisUser);
-//        return new RedirectView("/users");
-//    }
-//@PostMapping("/follow")
-//public String addFollowing(){
-//
-//    System.out.println("Manar" );
-//    ApplicationUser userWhoFollow = appUserRepository.findByUsername(p.getName());
-//    ApplicationUser userWhoReciveFollow= appUserRepository.findById(id).get();
-//    userWhoFollow.getFollowing().add(userWhoReciveFollow);
-//    userWhoReciveFollow.getFollowers().add(userWhoFollow);
-//    appUserRepository.save(userWhoFollow);
-//    appUserRepository.save(userWhoReciveFollow);
-////    return new RedirectView("/feed");
-//    return "feed.html";
-//return "signup";
-//}
-//@GetMapping("/follow")
-//public String getfeedPage(@PathVariable Integer id, Principal principal) {
-//    System.out.println("Manar" );
-//    ApplicationUser userWhoFollow = appUserRepository.findByUsername(principal.getName());
-//    System.out.println(appUserRepository.findByUsername(principal.getName()));
-//
-//
-//    return "feed";
-//}
 
-//    @PostMapping("/follow/{id}")
-//    public String getFollowerPosts(Principal currentUSer, @PathVariable Long id){
-//
-//    }
-//    @GetMapping("/feed")
-//    public String getAllFeed(Principal p, Model model){
-//        model.addAttribute("usernamePrincipal",p.getName());
-//        ApplicationUser userWhoFollow=appUserRepository.findByUsername(p.getName());
-//        List<ApplicationUser> following=userWhoFollow.getFollowers();
-//        model.addAttribute("feeds",following);
-//        return "feed.html";
-//    }
 @GetMapping("/follow/{id}")
 public RedirectView addFollowing(@PathVariable Integer id,Principal p){
     ApplicationUser userWhoFollow = appUserRepository.findByUsername(p.getName());
