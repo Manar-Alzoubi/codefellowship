@@ -9,6 +9,17 @@ import java.util.List;
 
 @Entity
 public class ApplicationUser implements UserDetails {
+    @ManyToMany
+    @JoinTable(
+            name = "user_user",
+            joinColumns = {@JoinColumn(name = "from_id")},
+            inverseJoinColumns = {@JoinColumn(name = "to_id")}
+    )
+    public List<ApplicationUser> following;
+    @ManyToMany(mappedBy = "following", fetch = FetchType.EAGER)
+    public List<ApplicationUser> followers;
+    @OneToMany(mappedBy = "applicationUser")
+    List<Post> posts;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -28,7 +39,8 @@ public class ApplicationUser implements UserDetails {
     public ApplicationUser() {
     }
 
-    public ApplicationUser(String username,String password,  String firstName, String lastName, String dateOfBirth, String bio) {
+
+    public ApplicationUser(String username, String password, String firstName, String lastName, String dateOfBirth, String bio) {
         this.password = password;
         this.username = username;
         this.firstName = firstName;
@@ -36,20 +48,6 @@ public class ApplicationUser implements UserDetails {
         this.dateOfBirth = dateOfBirth;
         this.bio = bio;
     }
-    @ManyToMany
-    @JoinTable(
-            name = "user_user",
-            joinColumns = {@JoinColumn(name = "from_id")},
-            inverseJoinColumns = {@JoinColumn(name = "to_id")}
-    )
-    public List<ApplicationUser> following;
-
-    @ManyToMany(mappedBy = "following", fetch = FetchType.EAGER)
-    public List<ApplicationUser> followers;
-
-
-    @OneToMany(mappedBy = "applicationUser")
-    List<Post> posts;
 
     public List<Post> getPosts() {
         return posts;
@@ -86,14 +84,6 @@ public class ApplicationUser implements UserDetails {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getFirstName() {
@@ -133,9 +123,17 @@ public class ApplicationUser implements UserDetails {
         return password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String getUsername() {
         return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Override
@@ -156,5 +154,12 @@ public class ApplicationUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "ApplicationUser{" +
+                "following=" + following +
+                '}';
     }
 }
