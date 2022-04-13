@@ -1,3 +1,4 @@
+
 # codefellowship
 
 *ApplationUser has the following properties : 
@@ -29,6 +30,7 @@
   * if user signed in it allows user enter the app (all pages of app )
   * your username will be shown at the top of page 
 
+
 * (/myprofile):
   * displays user information, include a default profile picture, and their basic information 
 
@@ -39,3 +41,4 @@
   * posts are appears in the profiage of the user who posted them 
 
    
+

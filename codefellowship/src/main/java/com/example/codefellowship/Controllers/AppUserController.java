@@ -113,6 +113,7 @@ public class AppUserController {
         return message;
     }
 
+
     @Transactional
     @PostMapping("/follow/{id}")
     public RedirectView addFollowing(Principal p, @PathVariable int id) {
@@ -124,6 +125,7 @@ public class AppUserController {
         appUserRepository.save(followedUser);
         return new RedirectView("/feed");
     }
+
 
     @GetMapping("/feed")
     public String getFollowingPosts(Model model) {
