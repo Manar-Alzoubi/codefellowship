@@ -3,23 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Feed</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="feed.css">
+
     <ul>
-        <li><a href="/signup">signup</a></li>
+        <li><a href="/home">Home</a></li>
         <li><a href="/login">login</a></li>
-        <li><a href="/myprofile">profile </a></li>
+        <li><a href="/myprofile">profile</a></li>
         <li><a href="/users">users</a></li>
         <li><a href="/feed">feed</a></li>
+        <li style="float:right"><a href="#about">About</a></li>
     </ul>
 </head>
 <body>
-<p> your follow is done </p>
-<ul th:each="post: ${posts}">
 
-    <h4  th:text="${post.applicationUser.username}"></h4>
-    <h4 th:text="${post.createdAt}"></h4>
-    <p  th:text="${post.body}"></p>
+</br>
+<p> your feeds  </p></br>
+<ul th:each="post: ${postsList}">
+    <div class="w3-container">
+        <div class="w3-card" style="width:80%">
+        <li>
+            <div class="container">
+                <img src="https://static.vecteezy.com/system/resources/previews/000/439/863/original/vector-users-icon.jpg" alt="Person" style="width:20%"></br></br>
+                <label>User: </label><span th:text="${post.ApplicationUser.username}"></span></br>
+                <label>Body: </label><span th:text="${post.body}"></span></br>
+                <label>Date: </label><span th:text="${#temporals.format(post.createdAt, 'dd-MM-yyyy HH:mm')}"></span></br></br></br>
+<!--                <form method="post" action= "'/users/'+${post.ApplicationUser.id}">-->
+<!--                    <button type="submit">view Account</button>-->
+<!--                </form>-->
+                <a  th:href="'/users/'+${post.ApplicationUser.id}">view Account</a>
+            </div>
+        </li>
+    </div>
+    </div>
+    </div>
+    <p>-------------------------------------------</p>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </ul>
-<br>
 </body>
 </html>

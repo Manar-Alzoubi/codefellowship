@@ -4,14 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <title>My Profile </title>
-    <link rel="stylesheet" href="style.css">
-    <h3 th:text="${user.username}"></h3>
+    <link rel="stylesheet" href="profile.css">
+
+    <h2 th:text = "'hello ' "> </h2>
+
     <ul>
-        <li><a href="/signup">signup</a></li>
+        <li><a href="/home">Home</a></li>
         <li><a href="/login">login</a></li>
-        <li><a href="/myprofile">profile </a></li>
+        <li><a href="/myprofile">profile</a></li>
         <li><a href="/users">users</a></li>
         <li><a href="/feed">feed</a></li>
+        <li style="float:right"><a href="#about">About</a></li>
     </ul>
 </head>
 <body>
@@ -19,7 +22,7 @@
 
 <div>
     <div class="w3-container">
-        <div class="w3-card" style="width:50%">
+        <div class="w3-card" style="width:30%">
             <h4>User Details </h4>
             <img src="https://static.vecteezy.com/system/resources/previews/000/439/863/original/vector-users-icon.jpg"
                  alt="Person" style="width:10%">
@@ -30,18 +33,26 @@
             <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         </div>
     </div>
-    <h3> Add new post </h3></br>
-    <form action="/addPost" method="POST">
+
+    <p>---------------------------------------</p><br><br>
+
+    <form action="/addPost" method="POST" style="width:80%">
+        <fieldset>
+            <legend>Add new post </legend><br>
         <textarea name="body" placeholder="Do you want to post ?"></textarea><br>
         <button class="btn btn-primary px-4 py-1">Add Post</button>
+        </fieldset>
     </form>
+    <p>---------------------------------------</p><br><br>
             <ul th:each="post: ${user.posts}">
                         <img src="https://static.vecteezy.com/system/resources/previews/000/439/863/original/vector-users-icon.jpg" alt="Person" style="width:10%">
                         <h4  th:text="${post.applicationUser.username}"></h4>
-                        <h4 th:text="${post.createdAt}"></h4>
+                        <h4 th:text="${#temporals.format(post.createdAt, 'dd-MM-yyyy HH:mm')}"></h4>
+<!--                <label>Date: </label><span th:text="${#temporals.format(post.createdAt, 'dd-MM-yyyy HH:mm')}"></span></br></br></br>-->
                         <p  th:text="${post.body}"></p>
             </ul>
     <br>
 </div>
+<p>---------------------------------------</p><br><br>
 </body>
 </html>
